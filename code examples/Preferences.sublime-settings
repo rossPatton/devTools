@@ -1,0 +1,38 @@
+{
+	"auto_complete": true,
+	"auto_complete_commit_on_tab": true,
+	"auto_complete_with_fields": true,
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"color_scheme": "Packages/User/base16-eighties.dark (SL).tmTheme",
+	"detect_indentation": true,
+	"draw_minimap_border": true,
+	"draw_white_space": "all",
+	"fade_fold_buttons": true,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"tmp",
+		".bundle",
+		".sass-cache"
+	],
+	"font_face": "Source Code Pro",
+	"font_size": 14,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"line_padding_bottom": 2,
+	"line_padding_top": 2,
+	"scroll_past_end": true,
+	"spell_check": true,
+	"tab_completion": true,
+	"tab_size": 4,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true
+}

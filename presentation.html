@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Dev Tools & Stuff</title>
+
+  <!-- Required stylesheet -->
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <h1>Let's Talk About <span class='red'>Dev Tools</span></h1>
+    </section>
+
+    <section class="slide">
+      <h2>Here's whats comin:</h2>
+      <ul>
+        <li> Chrome Dev Tools and some js debugging tips </li>
+        <li> Sublime Text 3 Packages and Customization </li>
+        <li> How I learned to stop worrying and love the shell </li>
+        <li> NVM && Brew (if we got time)</li>
+      </ul>
+      <img class='full-width' src='themes/img/yougonnalearn.gif' />
+    </section>
+
+    <section class="slide">
+      <h2>But... I don't like change!</h2>
+      <ul>
+        <li>It'll stop hurting after a while, I promise</li>
+      </ul>
+      <img src='themes/img/dontbelieve.gif' />
+    </section>
+
+     <section class="slide">
+      <h2>Disclaimer</h2>
+      <ul>
+        <li>Some of you are gonna be bored at parts, sorry</li>
+        <li>Also we're gonna need to plow through this, so if you haven't installed something we need, i recommend doing that now while we talk about browser stuff</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+     <h2>Let's Get Started: Debugging</h2>
+     <ul>
+       <li><code>console.log()</code> is not the end-all-be-all</li>
+       <li>Learn how to detect repaint and reflow issues, inspect objects/nodes more thoroughly, use handy shortcuts and emulators</li>
+     </ul>
+     <img src='themes/img/internet.gif' />
+    </section>
+
+    <section class="slide">
+     <h2>Debuggin' 2</h2>
+     <ul>
+       <li><code>console.dir()</code> for inspecting objects and seeing all properties (dom nodes are objects)</li>
+       <li><code>console.profile()</code> and <code>console.profileEnd()</code> will tell chrome to automatically run a code profile for you</li>
+       <li><code>performance.now()</code> can be used for high res benchmarking (down to the nanosecond)</li>
+     </ul>
+     <img src='themes/img/slide5.png' />
+     <img src='themes/img/slide5-2.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Debuggin' 3</h2>
+     <ul>
+       <li>Besides console commands, we have a few other basic tricks we can use</li>
+       <li>When inspecting a node, <code>$0</code> can bring it up in the console</li>
+       <li><code>performance.now()</code> can be used for high res benchmarking (down to the nanosecond)</li>
+       <li>Other things to look into: using the timeline, code breakpoints</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide5-3.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Repaint and Reflow (minor detour)</h2>
+     <ul>
+       <li>JS execution time is fast (like, really fast), browser rendering not so much</li>
+       <li>Any time your code causes a 'write', the browser has to calculate how to repaint that (and whether it needs to reflow, even worse)</li>
+       <li>Best practice is to front-load your 'reads' and then do all your 'writes'. Going back and forth too much can cause layout thrashing at worst and slow fps at best</li>
+       <li>To achieve 60fps we need to focus on animating cheap values, and accelerating the not-cheap ones ( gpu tricks, raf ) </li>
+     </ul>
+     <img src='themes/img/repaint.gif' />
+     <img src='themes/img/cheap-operations.jpg' />
+    </section>
+
+    <section class="slide">
+     <h2>So How do we debug that?</h2>
+     <ul>
+       <li>The Chrome Dev Tools rendering tab</li>
+       <li>Open Rendering Tab</li>
+       <li>If you're ever doing css transition/animation work, these are your best friends</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide7.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Mobile Debugging</h2>
+     <ul>
+       <li>Newer versions of Chrome should have the phone icon in the top left.</li>
+       <li>Instead of just resizing the window, use this guy to get a more accurate view of how Wired looks on mobile, or tablet</li>
+       <li>Even sort of emulates touch events? Kinda okay?</li>
+       <li>No substitute for a real device, but leagues better than just resizing the window</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide8.png' />
+     <img src='themes/img/slide8-2.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Package Control</h2>
+     <ul>
+       <li>Shift + Cmd + P to bring up Command Palette</li>
+       <li>Alternatively, Tools > Command Palette</li>
+       <li>Type Package Control</li>
+       <li>Commands to know: Install, List, and Remove</li>
+     </ul>
+     <img src='themes/img/slide9.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Installing a Package</h2>
+     <ul>
+       <li>Click on Install Package</li>
+       <li>Find SublimeLinter (just start typing)</li>
+       <li>Click on SublimeLinter</li>
+       <li>Bam, you're done son</li>
+       <li>If Package Control gives you additional instructions, follow them.</li>
+       <li>Occasionally packages have other requirements, like npm modules</li>
+     </ul>
+    </section>
+
+    <section class="slide">
+     <h2>Packages I think we should all be using: </h2>
+     <ul>
+       <li>SublimeLinter: With annotations, jshint, jscs, phpcs and phplint</li>
+       <li>DockBlockr: consistent documentation</li>
+       <li>Stylus: Syntax Highlighter for Stylus</li>
+       <li>GitGutter: visually track changes to the repo in sublime</li>
+     </ul>
+     <img class="full-width" src='themes/img/slide10.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Optional but still, totally cool, packages:</h2>
+     <ul>
+       <li>BracketHighlighter: never lose your place in code again</li>
+       <li>ColorHighlighter: hex and rgb values get highlighted in their color</li>
+       <li>CanIUse: quickly bring up a browser matrix for your code</li>
+       <li>SidebarEnhancements: adds ton of functionality to the sidebar</li>
+       <li>Theme: Spacegray. Looks real good.</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide11.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Set your Settings:</h2>
+     <ul>
+       <li>A lot of POWER can be had in settings</li>
+       <li>Actually, not that much, but there a couple improvements we can make</li>
+       <li>Adjust font size, line height, and toggle functionality on/off</li>
+     </ul>
+    </section>
+
+    <section class="slide">
+     <h2>Finding your settings:</h2>
+     <ul>
+       <li>Sublime Text -> Preferences -> Settings - Defaults</li>
+       <li>Sublime Text -> Preferences -> Settings - User</li>
+       <li>It's just JSON, any settings set here override the ones in default</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide13.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Useful Settings:</h2>
+     <ul>
+       <li>"trim_trailing_white_space_on_save": true - no more whitespace errors</li>
+       <li>"draw_white_space": "all" - tabs or spaces?</li>
+       <li>"draw_minimap_border": true </li>
+       <li>"highlight_line": true - easily see where the cursor is</li>
+       <li>"highlight_modified_tabs": true - see what files you've modified easier</li>
+       <li>"word_wrap": true - crazy long scripts will wrap</li>
+     </ul>
+    </section>
+
+    <section class="slide">
+     <h2>Useful Settings 2:</h2>
+     <ul>
+       <li>Many packages also have settings you can tweak</li>
+       <li>Install SublimeLinter-Annotations (just search annotations)</li>
+       <li>Tools -> SublimeLinter -> Open User Settings</li>
+       <li>You can tweak what annotations does, and the highlight here</li>
+     </ul>
+     <img src='themes/img/slide15.png' />
+    </section>
+
+    <section class="slide">
+     <h2>World War Zsh</h2>
+     <ul>
+       <li>The default terminal experience could be better</li>
+       <li>Better tab completion, always visible git repos, syntax highlighting</li>
+       <li>oh-my-zsh is the most popular variant of zshell</li>
+       <li>we're gonna walk through setting up aliases, using plugins, and settings zshell as your default terminal</li>
+     </ul>
+     <img class='full-width' src='themes/img/hacking.gif' />
+    </section>
+
+    <section class="slide">
+     <h2>Set up your shell</h2>
+     <ul>
+       <li><code>chsh -s /usr/local/bin/zsh</code> will change your default shell to zsh</li>
+       <li>alternatively, you can source zsh in your terminal if you dont want to commit just yet: <code>source ~/.zshrc</code></li>
+     </ul>
+     <img class='full-width' src='themes/img/source.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Aliases</h2>
+     <ul>
+       <li>First things first, we're gonna make an alias</li>
+       <li>~/.oh-my-zsh/custom/example.zsh</li>
+       <li>The following line will reload zshell, which will come in handy for us soon</li>
+       <li><code>alias reload="source ~/.zshrc"</code></li>
+       <li>You're gonna have to restart your terminal here, but it will be the last time we'll need to do this</li>
+       <img class='full-width' src='themes/img/slide19.png' />
+     </ul>
+    </section>
+
+    <section class="slide">
+     <h2>Plugins</h2>
+     <ul>
+       <li>zsh comes with plugins pre-downloaded, they are all accessible by default</li>
+       <li>https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins</li>
+       <li>Many plugins have dependencies tho, so we're gonna use brew a bit again</li>
+     </ul>
+    </section>
+
+    <section class="slide">
+     <h2>Plugins 2</h2>
+     <ul>
+       <li>~/.zshrc (if you've ever wondered, with dot files, rc stands for runtime config)</li>
+       <li>Ctrl+F plugins (should be line 55)</li>
+       <li>My Plugins line: <code>plugins=(git common-aliases dirhistory git-extras zsh-syntax-highlighting)</code></li>
+     </ul>
+     <img class='full-width' src='themes/img/slide21.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Plugins 3</h2>
+     <ul>
+       <li>We're gonna add the git-extras plugin</li>
+       <li>It's super simple: just add git-extras to your plugins in .zshrc</li>
+       <li>I picked this one because it has a brew dependency, so now we also need to run brew install git-extras</li>
+       <li>Now if you reload (using our alias from earlier) we should have access to all the git-extras commands</li>
+       <li>I use git-extras command <code>git delete-branch</code> quite often</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide22.png' />
+    </section>
+
+    <section class="slide">
+     <h2>Extra Credit 1: NVM</h2>
+     <ul>
+       <li>This one will be quick, i promise</li>
+       <li>Never sudo again (hopefully, i think, we can fix it anyway)</li>
+       <li>Use NVM to install specific node versions for testing or experimenting</li>
+     </ul>
+    </section>
+
+    <section class="slide">
+     <h2>NVM 2</h2>
+     <ul>
+       <li>You should already have it installed, but it needs to be sourced to use</li>
+       <li><code>source ~/.nvm/nvm.sh</code></li>
+       <li>You can add this line to your .zshrc or .bashrc file to source on load</li>
+       <li>You should be able to type nvm now and get the options list</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide23.png' />
+    </section>
+
+    <section class="slide">
+     <h2>NVM 3</h2>
+     <ul>
+       <li>Commands to know: install, use, ls, and ls-remote</li>
+       <li>nvm ls will show all currently installed versions of node, you should see nothing ( or system ) here</li>
+       <li>nvm ls-remote will show all possible versions of node</li>
+       <li>nvm use [ver-number] is how you switch versions of node</li>
+     </ul>
+     <img class='full-width' src='themes/img/slide25.png' />
+    </section>
+
+    <section class="slide">
+     <h2>NVM 4</h2>
+     <ul>
+       <li>Let's install v0.11.15 (edge version)</li>
+       <li><code>nvm install v0.11.15</code></li>
+       <li>we're now using that version of node, and we can easily switch between this edge version and the latest 'stable' release (v0.10.36 currently)</li>
+       <li>v0.11.15 has greater support for es6 functionality compared to v0.10.36, useful if you want to play around with that (or just use io.js *cough*)</li>
+     </ul>
+   </section>
+
+     <section class="slide">
+      <h2>Extra Credit 2: Homebrew</h2>
+      <ul>
+        <li>So we've been using brew for a lot of stuff, what is it?</li>
+        <li>It's yet another package manager, but this time for the mac in general</li>
+        <li>All things shell and mac can be had through brew</li>
+        <li>Also, beer theme</li>
+        <img class='full-width' src='themes/img/beer.gif' />
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Useful brews</h2>
+      <ul>
+        <li>Git, NVM, wget</li>
+        <li>zsh / oh-my-zsh / zsh plugins</li>
+        <li>php / python / ruby</li>
+        <li>tons of other stuff</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>1 problem with Brew</h2>
+      <ul>
+        <li>Needs constant updating and maintenance</li>
+        <li>Solution: schedule automatic updates</li>
+        <li>https://github.com/mkalmes/brewupdate</li>
+        <li>Never <code>brew update</code> again</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Thats it, we're done now</h2>
+      <ul>
+        <li>What should I talk about next?</li>
+        <li> Option 1: The DOM </li>
+        <li> Option 2: Javascript Fundamentals </li>
+        <li> Option 3: Phoenix Front End Overview #2 </li>
+        <li> Option 4: ES6: Javascript Next </li>
+      </ul>
+    </section>
+
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <!-- <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div> -->
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
